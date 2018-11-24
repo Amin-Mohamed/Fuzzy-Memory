@@ -4,52 +4,75 @@
     margin: 0;
     font-family: Arial, sans-serif;
 }
-h1{
-  color: #A373D9;
-  border-radius: 8px #000;
-  font-size: 3vw;
+
+body{
+  height: 100vh;
+  background-color: tomato;
+  display: flex;
 }
 
-.container
-{
-    display: flex;
-    flex-direction: column;
+.container{
+  display: flex;
+  flex-direction: column;
+}
 
-    justify-content: center;
-    align-items: center;
+h1{
+
+  text-align: center;
+  font-size: 3vw;
 }
 
 #memory-board
 {
-
+  margin: auto;
   width: 50%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-#memory-board > div
+.card
 {
-
+    display: flex;
     position: relative;
     border: 2px solid;
     border-radius: 8px;
     width: 10vw;
     margin: 5px;
     height: 130px;
-    background-color: #A373D9;
+    transition: scale(1);
+    justify-content: center;
+
+}
+.card.flip{
+  transform: rotateY(180deg);
 }
 
-.button-div{
-  padding-top: 25px;
+.card:active
+{
+  transform: scale(.90);
+  transition: transform .3s;
+}
 
+.back-img{
+  padding: 5px;
+  position: absolute;
+  width: 8vw;
+  height: 100px;
+  visibility: hidden;
+  /* backface-visibility: hidden; */
+}
+
+.button-div
+
+{
+  margin: auto;
 }
 
 .button{
-    border-radius: 8px;
-    background-color: #A373D9;
+    background-color: tomato;
+    border-radius: 2px;
     height: 50px;
     width: 200px;
     font-size: 2vw;
-    color: #000;
 }
