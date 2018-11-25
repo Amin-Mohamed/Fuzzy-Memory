@@ -1,78 +1,102 @@
 *
 {
+    font-family: Arial, sans-serif;
+
     box-sizing: border-box;
     margin: 0;
-    font-family: Arial, sans-serif;
 }
 
-body{
-  height: 100vh;
-  background-color: tomato;
-  display: flex;
-}
-
-.container{
-  display: flex;
-  flex-direction: column;
-}
-
-h1{
-
-  text-align: center;
-  font-size: 3vw;
-}
-
-#memory-board
+body
 {
-  margin: auto;
-  width: 50%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+
+    height: 100vh;
+
+    background-color: #483D8B;
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.memory-board
+{
+    display: flex;
+
+    width: 50%;
+    margin: auto;
+
+    flex-wrap: wrap;
+    justify-content: center;
+    perspective: 1000px;
 }
 
 .card
 {
-    display: flex;
     position: relative;
+
+    display: flex;
+
+    width: 10vw;
+    height: 140px;
+    margin: 5px;
+
+    transition: scale(1);
+
     border: 2px solid;
     border-radius: 8px;
-    width: 10vw;
-    margin: 5px;
-    height: 130px;
-    transition: scale(1);
-    justify-content: center;
 
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform .4s;
 }
-.card.flip{
-  transform: rotateY(180deg);
+
+.front-img
+{
+    position: absolute;
+    width: 10vw;
+    height: 140px;
+    backface-visibility: hidden;
+}
+
+.back-img
+{
+    transform: rotateY(180deg);
+    position: absolute;
+    width: 8vw;
+    height: 120px;
+    backface-visibility: hidden;
+}
+
+.card.flip
+{
+    transform: rotateY(180deg);
 }
 
 .card:active
 {
-  transform: scale(.90);
-  transition: transform .3s;
-}
-
-.back-img{
-  padding: 5px;
-  position: absolute;
-  width: 8vw;
-  height: 100px;
-  visibility: hidden;
-  /* backface-visibility: hidden; */
+  transform: scale(0.97);
+  transition: transform .2s;
 }
 
 .button-div
-
 {
-  margin: auto;
+    margin: auto;
+    width: 200px;
+    height: 50px;
+    text-align: center;
 }
 
-.button{
-    background-color: tomato;
-    border-radius: 2px;
-    height: 50px;
+.button-div a
+{
+    font-size: 3vw;
+    /* background-color: #2c333a; */
     width: 200px;
-    font-size: 2vw;
+    height: 50px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
 }
