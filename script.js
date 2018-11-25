@@ -1,22 +1,8 @@
 
 'use strict';
 
-// const randomDiv = document.querySelector('.button');
-//
-// link.addEventListener('click', function(event) {
-//   Math.random()
-// });
-
-
-// flip the cards
-const cards = document.querySelectorAll('.card');
-
-cards.forEach(card => card.addEventListener('click', function(e){
-  this.classList.toggle('flip');
-}));
-
-// shuffle images when replay clicked
-const replay = document.querySelector('.button');
+// shuffle images when replay button clicked
+let replay = document.querySelector('.button');
   replay.addEventListener('click', function(e){
     cards.forEach(card => {
       let RandomImg = Math.floor(Math.random() * 16);
@@ -25,25 +11,11 @@ const replay = document.querySelector('.button');
   });
 
 
-const images = document.querySelectorAll('.back-img');
-images.forEach(image => image.addEventListener('click', function(e){
-
-    i.style.visibility='visible';
+//flip the cards
+let cards = document.querySelectorAll('.card');
+cards.forEach(card => card.addEventListener('click', function(e){
+  this.classList.toggle('flip');
 }));
-
-function showImage() {
-  const imgs = document.getElementsByClassName('.back-img');
-  for (var i = 0; i < imgs.length; i++) {
-    imgs[i].style.visibility='visible';
-
-  }
-}
-
-
-
-
-
-
 
 
 
