@@ -6,115 +6,70 @@ const game = document.getElementById('game')
 const title = document.getElementById('splash-screen')
 const replayButton = document.getElementById('button-div')
 
-// shuffle images and show the game when start button is clicked
-startButton.addEventListener('click', function (e) {
-  cards.forEach(card => {
-    let RandomImg = Math.floor(Math.random() * 16)
-    card.style.order = RandomImg;
-  })
-  startButton.style.visibility='hidden'
-  game.style.visibility='visible'
-  title.style.visibility='hidden'
-  replayButton.style.visibility='visible'
-})
-
-
-// shuffle cards when replay button is clicked
-let replay = document.querySelector('.button')
-  replay.addEventListener('click', function(e){
+// shuffle cards and start the game function
+function startGame() {
     cards.forEach(card => {
       let RandomImg = Math.floor(Math.random() * 16)
       card.style.order = RandomImg;
     })
-  });
+    startButton.style.visibility='hidden'
+    game.style.visibility='visible'
+    title.style.visibility='hidden'
+    replayButton.style.visibility='visible'
+}
 
-let cards = document.querySelectorAll('.card')
-cards.forEach(card => card.addEventListener('click', flipCard))
+// call the function when the button is clicked
+startButton.addEventListener('click', startGame);
 
 
 let hasFlipped = false
 let firstCard, secondCard
 
-//flip the cards
+//flip the cards function
 function flipCard() {
   this.classList.add('flip')
   //firstCard
   if (!hasFlipped) {
-    hasFlipped = true
-    firstCard = this
+    hasFlipped = true;
+    firstCard = this;
     return
   }
-      //secandCard
-      hasFlipped = false
-      secondCard = this
-      matchCheck()
+    //secandCard
+    hasFlipped = false;
+    secondCard = this;
+    matchCheck();
 }
+
+// flip the card when its clicked
+let cards = document.querySelectorAll('.card')
+cards.forEach(card => card.addEventListener('click', flipCard))
+
+
+let replay = document.querySelector('.replay-button')
+function restartGame(){
+  // if the cards are flipped
+  if (!hasFlipped) {
+    firstCard.classList.remove('flip')
+    secondCard.classList.remove('flip')
+    startGame()
+}
+}
+replay.addEventListener('click', restartGame)
+
 // card match check
 function matchCheck() {
-
+  // first and secand card matching?
   if (firstCard.dataset.img === secondCard.dataset.img)
   {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
-      console.log('works');
   }
-  
+  //not match
   else
   {
   setTimeout(() =>{
     firstCard.classList.remove('flip')
     secondCard.classList.remove('flip')
-  }, 1000);
+  }, 800);
 }
 }
-
-
-
-
-
-// cards.forEach(card => card.addEventListener('click', function(e){
-//   this.classList.toggle('flip')
-//
-//   if (!hasFlipped) {
-//     hasFlipped = true
-//     firstCard = this
-//     // console.log(hasFlipped, firstCard);
-//   }
-//     else {
-//       hasFlipped = true
-//       secandCard = this
-//     }
-//     // console.log(firstCard, secondCard);
-//     if (secandCard) {
-//       if (firstCard.dataset.img === secandCard.dataset.img){
-//         console.log('works')
-//       }
-//     }
-//
-//   }));
-
-
-  // function flipCard() {
-  //   this.classList.toggle('flip');
-  //
-  //   if (!hasFlipped) {
-  //     hasFlipped = true;
-  //     firstCard = this;
-  //     // console.log(hasFlipped, firstCard);
-  //   }
-  //     else {
-  //       hasFlipped = true;
-  //       secondCard = this;
-  //     }
-  //     // console.log(firstCard, secondCard);
-  //     if (secondCard) {
-  //
-  //       if (firstCard.dataset.img === secondCard.dataset.img){
-  //         console.log('works');
-  //         firstCard.removeEventListener('click', flipCard());
-  //         secondCard.removeEventListener('click', flipCard());
-  //       }
-  //     }
-  // }
-  //
-  // cards.forEach(card => card.addEventListener('click', flipCard));
