@@ -23,17 +23,28 @@ function startGame() {
 // call the function when the start button is clicked
 startButton.addEventListener('click', startGame);
 
+//repaly button
+replay.addEventListener('click', () => {
+  cards.forEach(card => {
+    card.classList.remove('flip');
+    card.addEventListener('click', flipCard);
+});
+  setTimeout(() => {
+    startGame();
+  }, 500);
+});
+
 let hasFlipped = false
 let firstCard, secondCard
 
 //flip the cards function
 function flipCard() {
-
   this.classList.add('flip')
   //first click
   if (!hasFlipped) {
     hasFlipped = true;
     firstCard = this;
+
     return
   }
     //secand click
@@ -42,14 +53,18 @@ function flipCard() {
     matchCheck();
 }
 
-// card match check
+let pairCounter = 0;
+
+// card matchning check
 function matchCheck() {
-  // first and secand card matching?
+
+  // first and secand card are matching?
   if (firstCard.dataset.img === secondCard.dataset.img)
-  {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
-  }
+      {
+        firstCard.removeEventListener('click', flipCard);
+        secondCard.removeEventListener('click', flipCard);
+        pairCounter++;
+      }
   //not match
   else
   {
@@ -58,41 +73,14 @@ function matchCheck() {
     secondCard.classList.remove('flip')
   }, 800);
 }
+// all cards are matching
+if (pairCounter === 8)
+{
+  setTimeout(() => {
+    window.alert("Congratulations you win press replay to start a new game");
+  }, 500)
+}
 }
 
 // flip the card when its clicked
 cards.forEach(card => card.addEventListener('click', flipCard))
-
-// function restartGame(){
-  // if the cards are flipped
-//   if (!hasFlipped) {
-//     cards.forEach(function (card) {
-//     card.classList.remove('flip')
-//   })
-// }
-//   startGame()
-// }
-
-replay.addEventListener('click', () => {
-  cards.forEach(card => {
-    card.classList.remove('flip');
-    card.addEventListener('click', flipCard);
-
-});
-  setTimeout(() => {
-    startGame();
-  }, 500);
-});
-
-
-
-
-//congratulations
-
-let matchedCards = [];
-cards.forEach(function (card) {
-  if (card.dataset.img === card.dataset.img) {
-    matchedCards.push(card);
-  }
-})
-console.log(matchedCards)
