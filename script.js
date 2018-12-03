@@ -7,8 +7,9 @@ const title = document.getElementById('splash-screen')
 const replayButton = document.getElementById('button-div')
 let cards = document.querySelectorAll('.card')
 let replay = document.querySelector('.replay-button')
+let pairCounter = 0;
 
-// shuffle cards and start the game function
+// shuffle cards and start the game
 function startGame() {
     cards.forEach(card => {
       let RandomImg = Math.floor(Math.random() * 16)
@@ -23,21 +24,26 @@ function startGame() {
 // call the function when the start button is clicked
 startButton.addEventListener('click', startGame);
 
-//repaly button
-replay.addEventListener('click', () => {
+
+//repaly button --- a new memory board
+function resetBoard() {
+  pairCounter = 0;
   cards.forEach(card => {
     card.classList.remove('flip');
     card.addEventListener('click', flipCard);
 });
   setTimeout(() => {
-    startGame();
+  startGame();
   }, 500);
-});
+}
+replay.addEventListener('click', resetBoard)
+
+
 
 let hasFlipped = false
 let firstCard, secondCard
 
-//flip the cards function
+//flip the cards
 function flipCard() {
   this.classList.add('flip')
   //first click
@@ -53,9 +59,9 @@ function flipCard() {
     matchCheck();
 }
 
-let pairCounter = 0;
 
-// card matchning check
+
+// card matching check
 function matchCheck() {
 
   // first and secand card are matching?
@@ -73,7 +79,7 @@ function matchCheck() {
     secondCard.classList.remove('flip')
   }, 800);
 }
-// all cards are matching
+// all cards are matching?
 if (pairCounter === 8)
 {
   setTimeout(() => {
