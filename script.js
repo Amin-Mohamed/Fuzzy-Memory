@@ -58,7 +58,8 @@ function flipCard() {
     secondCard = this;
     matchCheck();
 }
-
+// flip the card
+cards.forEach(card => card.addEventListener('click', flipCard))
 
 
 // card matching check
@@ -87,6 +88,3 @@ if (pairCounter === 8)
   }, 500)
 }
 }
-
-// flip the card when its clicked
-cards.forEach(card => card.addEventListener('click', flipCard))
