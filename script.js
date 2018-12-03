@@ -5,6 +5,8 @@ const startButton = document.getElementById('start-button')
 const game = document.getElementById('game')
 const title = document.getElementById('splash-screen')
 const replayButton = document.getElementById('button-div')
+let cards = document.querySelectorAll('.card')
+let replay = document.querySelector('.replay-button')
 
 // shuffle cards and start the game function
 function startGame() {
@@ -18,43 +20,27 @@ function startGame() {
     replayButton.style.visibility='visible'
 }
 
-// call the function when the button is clicked
+// call the function when the start button is clicked
 startButton.addEventListener('click', startGame);
-
 
 let hasFlipped = false
 let firstCard, secondCard
 
 //flip the cards function
 function flipCard() {
+
   this.classList.add('flip')
-  //firstCard
+  //first click
   if (!hasFlipped) {
     hasFlipped = true;
     firstCard = this;
     return
   }
-    //secandCard
+    //secand click
     hasFlipped = false;
     secondCard = this;
     matchCheck();
 }
-
-// flip the card when its clicked
-let cards = document.querySelectorAll('.card')
-cards.forEach(card => card.addEventListener('click', flipCard))
-
-
-let replay = document.querySelector('.replay-button')
-function restartGame(){
-  // if the cards are flipped
-  if (!hasFlipped) {
-    firstCard.classList.remove('flip')
-    secondCard.classList.remove('flip')
-    startGame()
-}
-}
-replay.addEventListener('click', restartGame)
 
 // card match check
 function matchCheck() {
@@ -73,3 +59,40 @@ function matchCheck() {
   }, 800);
 }
 }
+
+// flip the card when its clicked
+cards.forEach(card => card.addEventListener('click', flipCard))
+
+// function restartGame(){
+  // if the cards are flipped
+//   if (!hasFlipped) {
+//     cards.forEach(function (card) {
+//     card.classList.remove('flip')
+//   })
+// }
+//   startGame()
+// }
+
+replay.addEventListener('click', () => {
+  cards.forEach(card => {
+    card.classList.remove('flip');
+    card.addEventListener('click', flipCard);
+
+});
+  setTimeout(() => {
+    startGame();
+  }, 500);
+});
+
+
+
+
+//congratulations
+
+let matchedCards = [];
+cards.forEach(function (card) {
+  if (card.dataset.img === card.dataset.img) {
+    matchedCards.push(card);
+  }
+})
+console.log(matchedCards)
