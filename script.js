@@ -77,7 +77,7 @@ function matchCheck() {
 if (pairCounter === 8)
 {
   setTimeout(() => {
-    window.alert("Congratulations you win press replay to start a new game");
+    window.alert("Congratulations you won! Press replay to start a new game");
   }, 500)
 }
 }
