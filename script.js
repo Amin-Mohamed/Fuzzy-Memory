@@ -1,4 +1,3 @@
-
 'use strict';
 
 const startButton = document.getElementById('start-button')
@@ -24,7 +23,6 @@ function startGame() {
 // call the function when the start button is clicked
 startButton.addEventListener('click', startGame);
 
-
 //repaly button --- a new memory board
 function resetBoard() {
   pairCounter = 0;
@@ -38,8 +36,6 @@ function resetBoard() {
 }
 replay.addEventListener('click', resetBoard)
 
-
-
 let hasFlipped = false
 let firstCard, secondCard
 
@@ -50,7 +46,6 @@ function flipCard() {
   if (!hasFlipped) {
     hasFlipped = true;
     firstCard = this;
-
     return
   }
     //secand click
@@ -58,13 +53,12 @@ function flipCard() {
     secondCard = this;
     matchCheck();
 }
+
 // flip the card
 cards.forEach(card => card.addEventListener('click', flipCard))
 
-
 // card matching check
 function matchCheck() {
-
   // first and secand card are matching?
   if (firstCard.dataset.img === secondCard.dataset.img)
       {
@@ -80,6 +74,7 @@ function matchCheck() {
     secondCard.classList.remove('flip')
   }, 800);
 }
+
 // all cards are matching?
 if (pairCounter === 8)
 {

@@ -20,3 +20,6 @@ JavaScript assignment
 
 - Google Chrome
 - Mozilla Firefox
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
